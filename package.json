@@ -1,10 +1,10 @@
 {
 	"name": "ky",
-	"version": "0.33.1",
+	"version": "0.28.0",
 	"description": "Tiny and elegant HTTP client based on the browser Fetch API",
 	"license": "MIT",
-	"repository": "sindresorhus/ky",
-	"funding": "https://github.com/sindresorhus/ky?sponsor=1",
+	"repository": "rootblck/fu",
+	"funding": "https://github.com/rootblck/fu?sponsor=1",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
@@ -12,13 +12,12 @@
 	},
 	"type": "module",
 	"main": "./distribution/index.js",
-	"exports": "./distribution/index.js",
 	"types": "./distribution/index.d.ts",
 	"engines": {
-		"node": ">=14.16"
+		"node": ">=12"
 	},
 	"scripts": {
-		"test": "xo && npm run build && ava --timeout=10m --serial",
+		"test": "xo && npm run build && ava",
 		"debug": "PWDEBUG=1 ava --timeout=2m",
 		"release": "np",
 		"build": "del-cli distribution && tsc --project tsconfig.dist.json",
@@ -50,29 +49,27 @@
 		"node-fetch"
 	],
 	"devDependencies": {
-		"@sindresorhus/tsconfig": "^3.0.1",
-		"@type-challenges/utils": "^0.1.1",
-		"@types/body-parser": "^1.19.2",
-		"@types/busboy": "^0.3.1",
-		"@types/express": "^4.17.14",
-		"@types/node": "^18.11.7",
-		"@types/node-fetch": "^2.6.2",
+		"@sindresorhus/tsconfig": "^1.0.1",
+		"@types/body-parser": "^1.19.0",
+		"@types/busboy": "^0.2.3",
+		"@types/express": "^4.17.11",
+		"@types/node-fetch": "^2.5.10",
+		"@types/pify": "^5.0.0",
 		"abort-controller": "^3.0.0",
-		"ava": "^4.3.3",
-		"body-parser": "^1.20.1",
+		"ava": "^3.15.0",
+		"body-parser": "^1.19.0",
 		"busboy": "^0.3.1",
-		"del-cli": "^4.0.1",
+		"del-cli": "^3.0.1",
 		"delay": "^5.0.0",
-		"expect-type": "^0.14.2",
-		"express": "^4.18.2",
+		"express": "^4.17.1",
 		"form-data": "^4.0.0",
 		"node-fetch": "^2.6.1",
-		"pify": "^6.1.0",
-		"playwright-chromium": "^1.27.1",
-		"raw-body": "^2.5.1",
-		"ts-node": "^10.8.1",
-		"typescript": "^4.8.4",
-		"xo": "^0.50.0"
+		"pify": "^5.0.0",
+		"playwright-chromium": "^1.10.0",
+		"raw-body": "^2.4.1",
+		"ts-node": "^9.1.1",
+		"typescript": "^4.2.4",
+		"xo": "^0.38.2"
 	},
 	"sideEffects": false,
 	"xo": {
@@ -83,19 +80,22 @@
 			"globalThis"
 		],
 		"rules": {
-			"unicorn/filename-case": "off",
-			"@typescript-eslint/ban-ts-comment": "off",
-			"@typescript-eslint/no-unsafe-argument": "off",
-			"@typescript-eslint/no-unsafe-assignment": "off",
-			"@typescript-eslint/no-unsafe-return": "off",
-			"@typescript-eslint/no-unsafe-call": "off",
-			"@typescript-eslint/naming-convention": "off"
+			"@typescript-eslint/dot-notation": "off",
+			"ava/no-import-test-files": "off",
+			"unicorn/filename-case": "off"
 		}
 	},
 	"ava": {
+		"files": [
+			"test/*"
+		],
 		"require": [
 			"./test/_require.ts"
 		],
+		"nonSemVerExperiments": {
+			"configurableModuleFormat": true,
+			"nextGenConfig": true
+		},
 		"extensions": {
 			"ts": "module"
 		},
